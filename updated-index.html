@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THE BAKIST | Baking ingredients, dates, nuts & empty hampers</title>
+  <meta name="description" content="THE BAKIST brings premium baking ingredients, frozen foods, dates, nuts and empty hamper packaging to Puthanathani, Kerala.">
+  <meta name="theme-color" content="#17120f">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17120f;
+      --muted: #71685f;
+      --paper: #fbf8f2;
+      --white: #fffdf9;
+      --cream: #f3eadb;
+      --sand: #e8d6bc;
+      --gold: #c89a51;
+      --gold-light: #e8c989;
+      --wine: #682b2a;
+      --olive: #4d5b43;
+      --line: rgba(23, 18, 15, .13);
+      --shadow: 0 24px 70px rgba(35, 23, 11, .13);
+      --radius: 18px;
+      --max: 1240px;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.menu-open, body.cart-open { overflow: hidden; }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, input, textarea { font: inherit; }
+    button { color: inherit; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .container { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--wine);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 27px;
+      height: 1px;
+      background: currentColor;
+    }
+    .serif { font-family: var(--serif); }
+    .announcement {
+      min-height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 7px 18px;
+      color: var(--cream);
+      background: var(--ink);
+      font-size: .69rem;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .announcement span { color: var(--gold-light); }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(251, 248, 242, .93);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+    .nav {
+      min-height: 82px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      width: fit-content;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      color: var(--gold-light);
+      background: var(--ink);
+      border-radius: 50%;
+    }
+    .brand-logo {
+      width: 85px;
+      height: 85px;
+      flex: 0 0 auto;
+      display: block;
+      object-fit: cover;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      background: var(--white);
+    }
+    footer .brand-logo { border-color: var(--gold-light); }
+    .brand-copy { display: grid; gap: 1px; line-height: 1; }
+    .brand-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; letter-spacing: .04em; }
+    .brand-tag { color: var(--muted); font-size: .54rem; font-weight: 700; letter-spacing: .19em; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 27px;
+      font-size: .77rem;
+      font-weight: 600;
+    }
+    .nav-links a { position: relative; text-decoration: none; }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -7px;
+      height: 1px;
+      background: var(--wine);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform .2s ease;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-actions { display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
+    .icon-button, .menu-button {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      transition: background .2s, color .2s, transform .2s;
+    }
+    .icon-button:hover, .menu-button:hover { color: var(--white); background: var(--ink); transform: translateY(-1px); }
+    .cart-button { position: relative; }
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -3px;
+      min-width: 16px;
+      height: 16px;
+      display: grid;
+      place-items: center;
+      padding: 0 4px;
+      color: var(--white);
+      background: var(--wine);
+      border: 2px solid var(--paper);
+      border-radius: 50%;
+      font-size: .57rem;
+      font-weight: 700;
+    }
+    .menu-button { display: none; }
+
+    .hero { overflow: hidden; padding: 62px 0 80px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr);
+      align-items: center;
+      gap: 72px;
+    }
+    .hero h1 {
+      max-width: 660px;
+      margin: 18px 0 20px;
+      font-family: var(--serif);
+      font-size: clamp(3.35rem, 6.7vw, 6.35rem);
+      font-weight: 500;
+      letter-spacing: -.055em;
+      line-height: .95;
+    }
+    .hero h1 em { color: var(--wine); font-weight: 600; }
+    .hero-intro { max-width: 460px; margin: 0; color: var(--muted); font-size: 1.04rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 31px; }
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 21px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      color: var(--white);
+      background: var(--ink);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .2s, background .2s, color .2s;
+    }
+    .button:hover { color: var(--ink); background: transparent; transform: translateY(-2px); }
+    .button.secondary { color: var(--ink); background: transparent; }
+    .button.secondary:hover { color: var(--white); background: var(--ink); }
+    .button.light { color: var(--ink); background: var(--gold-light); border-color: var(--gold-light); }
+    .button.light:hover { color: var(--white); background: transparent; border-color: var(--white); }
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: .73rem;
+    }
+    .hero-note strong { color: var(--ink); }
+    .hero-note .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+    .hero-visual { position: relative; min-height: 505px; }
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 27px 0 0 38px;
+      border-radius: 45% 45% 20px 20px;
+      background: var(--cream);
+    }
+    .hero-visual::after {
+      content: "THE BAKIST";
+      position: absolute;
+      right: -8px;
+      bottom: 32px;
+      color: rgba(104, 43, 42, .16);
+      font-family: var(--serif);
+      font-size: clamp(2.3rem, 5vw, 4.6rem);
+      letter-spacing: .07em;
+      transform: rotate(-90deg) translateY(-100%);
+      transform-origin: right bottom;
+    }
+    .hero-art {
+      position: absolute;
+      inset: 0 65px 0 0;
+      overflow: hidden;
+      border-radius: 48% 48% 20px 20px;
+      background:
+        radial-gradient(circle at 24% 22%, rgba(232, 201, 137, .74) 0 10%, transparent 10.5%),
+        radial-gradient(circle at 76% 34%, rgba(255, 253, 249, .25) 0 13%, transparent 13.5%),
+        linear-gradient(140deg, #733d34 0%, #8c4f3d 47%, #4c2726 100%);
+      box-shadow: var(--shadow);
+    }
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      width: 235px;
+      height: 235px;
+      top: 44px;
+      right: -56px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 50%;
+      box-shadow: 0 0 0 22px rgba(255,255,255,.05), 0 0 0 45px rgba(255,255,255,.05);
+    }
+    .hero-label {
+      position: absolute;
+      top: 31px;
+      left: 30px;
+      color: var(--gold-light);
+      font-size: .67rem;
+      font-weight: 700;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+    .hero-art-title {
+      position: absolute;
+      left: 34px;
+      bottom: 34px;
+      color: var(--white);
+      font-family: var(--serif);
+      font-size: clamp(2.1rem, 4vw, 3.8rem);
+      line-height: .98;
+    }
+    .hero-art-title em { display: block; color: var(--gold-light); }
+    .hero-jar {
+      position: absolute;
+      top: 94px;
+      left: 27%;
+      width: 205px;
+      height: 265px;
+      border: 3px solid rgba(255, 253, 249, .84);
+      border-radius: 32px 32px 44px 44px;
+      background: linear-gradient(150deg, rgba(255,255,255,.28), rgba(255,255,255,.04) 42%, rgba(25,10,7,.28));
+      transform: rotate(-7deg);
+      box-shadow: 28px 27px 0 rgba(37, 12, 8, .15);
+    }
+    .hero-jar::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: 25px;
+      right: 25px;
+      height: 29px;
+      border: 3px solid var(--gold-light);
+      border-radius: 9px;
+      background: var(--ink);
+    }
+    .jar-label {
+      position: absolute;
+      top: 78px;
+      left: 12px;
+      right: 12px;
+      padding: 23px 9px;
+      color: var(--ink);
+      background: var(--gold-light);
+      text-align: center;
+      transform: rotate(7deg);
+    }
+    .jar-label b { display: block; font-family: var(--serif); font-size: 1.5rem; }
+    .jar-label small { font-size: .52rem; font-weight: 700; letter-spacing: .15em; }
+    .hero-nut { position: absolute; border-radius: 44% 56% 55% 45%; background: var(--gold-light); box-shadow: inset -8px -7px 0 rgba(117, 63, 36, .25); }
+    .hero-nut.one { width: 71px; height: 98px; left: 9%; top: 180px; transform: rotate(35deg); }
+    .hero-nut.two { width: 54px; height: 75px; right: 15%; top: 255px; transform: rotate(-28deg); background: #aa673d; }
+    .hero-nut.three { width: 44px; height: 62px; right: 8%; top: 172px; transform: rotate(21deg); background: #d4a869; }
+
+    .trust-strip { border-block: 1px solid var(--line); background: var(--white); }
+    .trust-items { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      min-height: 74px;
+      padding: 12px;
+      border-right: 1px solid var(--line);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-align: center;
+    }
+    .trust-item:last-child { border: 0; }
+    .trust-icon { color: var(--wine); }
+
+    .section { padding: 106px 0; }
+    .section.soft { background: var(--cream); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 42px; }
+    .section-title { margin: 10px 0 0; font-family: var(--serif); font-size: clamp(2.4rem, 4.2vw, 4rem); font-weight: 500; letter-spacing: -.045em; line-height: .98; }
+    .section-copy { max-width: 380px; margin: 0; color: var(--muted); font-size: .92rem; }
+    .category-row { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 32px; }
+    .filter {
+      padding: 9px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: transparent;
+      font-size: .72rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s;
+    }
+    .filter:hover, .filter.active { color: var(--white); background: var(--ink); border-color: var(--ink); }
+    .collection-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .collection-card {
+      position: relative;
+      min-height: 355px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      overflow: hidden;
+      padding: 25px;
+      border-radius: var(--radius);
+      color: var(--white);
+      background: var(--ink);
+      text-decoration: none;
+      isolation: isolate;
+    }
+    .collection-card::before { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .9; transition: transform .5s; }
+    .collection-card:hover::before { transform: scale(1.06); }
+    .collection-card:nth-child(1)::before { background: linear-gradient(145deg, #c47d43, #5a2b22); }
+    .collection-card:nth-child(2)::before { background: linear-gradient(145deg, #677458, #263326); }
+    .collection-card:nth-child(3)::before { background: linear-gradient(145deg, #ba8c58, #64402c); }
+    .collection-card:nth-child(4)::before { background: linear-gradient(145deg, #87484a, #341b1d); }
+    .collection-card::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 190px;
+      height: 190px;
+      top: 28px;
+      right: -30px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 50%;
+      box-shadow: 0 0 0 19px rgba(255,255,255,.07), 0 0 0 39px rgba(255,255,255,.06);
+    }
+    .collection-number { position: absolute; top: 22px; left: 24px; color: rgba(255,255,255,.65); font-size: .67rem; font-weight: 700; letter-spacing: .12em; }
+    .collection-symbol { position: absolute; top: 53px; right: 47px; width: 87px; height: 107px; border-radius: 46% 54% 48% 52%; background: rgba(250, 220, 158, .86); box-shadow: inset -13px -12px 0 rgba(87, 38, 24, .22); transform: rotate(20deg); }
+    .collection-card:nth-child(2) .collection-symbol { width: 112px; height: 78px; border-radius: 54% 46% 46% 54%; background: rgba(231, 237, 194, .85); }
+    .collection-card:nth-child(3) .collection-symbol { width: 88px; height: 88px; border-radius: 50%; background: rgba(255, 239, 202, .87); }
+    .collection-card:nth-child(4) .collection-symbol { width: 110px; height: 88px; border: 2px solid rgba(255, 241, 198, .92); background: rgba(255,255,255,.08); transform: rotate(-9deg); }
+    .collection-card h3 { max-width: 10ch; margin: 0 0 8px; color: var(--white); font-family: var(--serif); font-size: 1.72rem; font-weight: 500; line-height: 1.04; }
+    .collection-card p { margin: 0; color: rgba(255,255,255,.76); font-size: .77rem; line-height: 1.5; }
+    .collection-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; color: var(--gold-light); font-size: .7rem; font-weight: 700; letter-spacing: .04em; }
+
+    .story-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 70px; align-items: center; }
+    .story-frame {
+      position: relative;
+      min-height: 500px;
+      overflow: hidden;
+      border-radius: 22px;
+      background: var(--wine);
+    }
+    .story-frame::before {
+      content: "";
+      position: absolute;
+      inset: 35px;
+      border: 1px solid rgba(255, 239, 202, .47);
+      border-radius: 50% 50% 10px 10px;
+    }
+    .story-frame::after {
+      content: "SINCE 2024";
+      position: absolute;
+      left: 33px;
+      bottom: 29px;
+      color: rgba(255,255,255,.63);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .17em;
+    }
+    .story-copy-card { position: absolute; top: 50%; left: 50%; width: 55%; padding: 32px 26px; color: var(--ink); background: var(--gold-light); box-shadow: 20px 20px 0 rgba(28, 13, 13, .2); transform: translate(-50%, -50%) rotate(-6deg); }
+    .story-copy-card::before { content: "✦"; display: block; margin-bottom: 15px; color: var(--wine); font-size: 2rem; line-height: 1; }
+    .story-copy-card h3 { margin: 0 0 9px; font-family: var(--serif); font-size: 2rem; font-weight: 600; line-height: 1.05; }
+    .story-copy-card p { margin: 0; color: rgba(23,18,15,.72); font-size: .75rem; }
+    .story-content h2 { max-width: 10ch; }
+    .story-content > p { max-width: 500px; color: var(--muted); font-size: .97rem; }
+    .story-points { display: grid; gap: 17px; margin: 29px 0 32px; padding: 0; list-style: none; }
+    .story-points li { display: flex; gap: 12px; align-items: start; font-size: .8rem; }
+    .story-points svg { flex: 0 0 auto; margin-top: 2px; color: var(--wine); }
+
+    .founders-section { padding-top: 0; }
+    .founder-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .founder-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 235px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+    .founder-card::after {
+      content: "";
+      position: absolute;
+      right: -24px;
+      bottom: -56px;
+      width: 160px;
+      height: 160px;
+      border: 1px solid rgba(104,43,42,.18);
+      border-radius: 50%;
+      box-shadow: 0 0 0 16px rgba(104,43,42,.05), 0 0 0 33px rgba(104,43,42,.04);
+    }
+    .founder-top { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+    .founder-initials {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      color: var(--gold-light);
+      background: var(--wine);
+      border-radius: 50%;
+      font-family: var(--serif);
+      font-size: 1.25rem;
+    }
+    .founder-card h3 { margin: 0; font-family: var(--serif); font-size: 1.55rem; font-weight: 500; }
+    .founder-role { display: block; margin-top: 2px; color: var(--wine); font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .founder-card p { position: relative; z-index: 1; max-width: 440px; margin: 0; color: var(--muted); font-size: .8rem; }
+    .founder-legacy { max-width: 720px; margin: 24px 0 0; color: var(--muted); font-size: .85rem; }
+
+    .feature-panel { display: grid; grid-template-columns: .95fr 1.05fr; overflow: hidden; border-radius: 22px; color: var(--cream); background: var(--ink); }
+    .feature-copy { padding: clamp(32px, 6vw, 72px); }
+    .feature-copy .eyebrow { color: var(--gold-light); }
+    .feature-copy h2 { max-width: 8ch; color: var(--white); }
+    .feature-copy p { max-width: 410px; color: rgba(255,255,255,.68); font-size: .9rem; }
+    .feature-list { display: grid; gap: 10px; margin: 30px 0; padding: 0; list-style: none; color: rgba(255,255,255,.8); font-size: .77rem; }
+    .feature-list li { display: flex; align-items: center; gap: 9px; }
+    .feature-list li::before { content: "✓"; color: var(--gold-light); font-weight: 700; }
+    .feature-art { position: relative; min-height: 460px; overflow: hidden; background: linear-gradient(140deg, #986b4a, #d1a873 52%, #6f3930); }
+    .feature-art::before { content: ""; position: absolute; inset: 15% -10% -30%; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; transform: rotate(-24deg); box-shadow: 0 0 0 30px rgba(255,255,255,.07), 0 0 0 60px rgba(255,255,255,.06); }
+    .gift-box { position: absolute; width: 260px; height: 190px; left: 50%; top: 50%; background: #f3d28e; box-shadow: 25px 27px 0 rgba(85, 36, 25, .18); transform: translate(-50%, -35%) rotate(-9deg); }
+    .gift-box::before { content: ""; position: absolute; inset: 0 42%; background: var(--wine); }
+    .gift-box::after { content: ""; position: absolute; left: -8px; right: -8px; top: 0; height: 43px; background: #f8dfab; border: 1px solid rgba(95, 53, 28, .2); }
+    .gift-lid { position: absolute; z-index: 2; top: -22px; left: -19px; width: 298px; height: 51px; background: #e7c378; border: 1px solid rgba(95, 53, 28, .25); }
+    .gift-ribbon { position: absolute; z-index: 3; top: -43px; left: 50%; width: 77px; height: 60px; border: 12px solid var(--wine); border-bottom: 0; border-radius: 50% 50% 0 0; transform: translateX(-50%) rotate(3deg); }
+    .gift-ribbon::after { content: ""; position: absolute; top: 39px; left: 21px; width: 13px; height: 173px; background: var(--wine); }
+
+    .contact-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 18px; }
+    .contact-card { padding: 40px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); }
+    .contact-card.dark { color: var(--cream); background: var(--wine); border-color: var(--wine); }
+    .contact-card h3 { margin: 8px 0 10px; font-family: var(--serif); font-size: 2.15rem; font-weight: 500; line-height: 1.03; }
+    .contact-card p { margin: 0 0 24px; color: var(--muted); font-size: .85rem; }
+    .contact-card.dark p { color: rgba(255,255,255,.7); }
+    .contact-details { display: grid; gap: 16px; margin-top: 32px; }
+    .contact-detail { display: flex; gap: 12px; align-items: start; font-size: .78rem; }
+    .contact-detail svg { flex: 0 0 auto; color: var(--gold); margin-top: 2px; }
+    .contact-detail a { color: inherit; text-underline-offset: 3px; }
+    .contact-label { display: block; margin-bottom: 2px; color: var(--muted); font-size: .63rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .dark .contact-label { color: rgba(255,255,255,.53); }
+    .contact-form { display: grid; gap: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    label { display: grid; gap: 7px; color: var(--muted); font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    input, textarea { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 13px 14px; color: var(--ink); background: var(--paper); font-size: .82rem; outline: none; }
+    input:focus, textarea:focus { border-color: var(--wine); box-shadow: 0 0 0 3px rgba(104,43,42,.1); }
+    textarea { min-height: 110px; resize: vertical; }
+    .form-status { display: none; padding: 12px 14px; color: var(--olive); background: #e8efdf; border-radius: 8px; font-size: .76rem; }
+    .form-status.show { display: block; }
+
+    footer { padding: 44px 0 24px; color: rgba(255,255,255,.64); background: var(--ink); }
+    .footer-top { display: flex; align-items: start; justify-content: space-between; gap: 30px; padding-bottom: 37px; }
+    .footer-brand .brand-name { color: var(--white); }
+    .footer-brand .brand-tag { color: var(--gold-light); }
+    .footer-copy { max-width: 265px; margin: 13px 0 0; font-size: .75rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px 25px; justify-content: flex-end; font-size: .73rem; }
+    .footer-links a { text-decoration: none; }
+    .footer-links a:hover { color: var(--gold-light); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); font-size: .65rem; }
+
+    .backdrop { position: fixed; z-index: 40; inset: 0; display: none; background: rgba(23,18,15,.54); }
+    .backdrop.show { display: block; }
+    .drawer { position: fixed; z-index: 50; top: 0; right: 0; bottom: 0; width: min(410px, 100%); padding: 25px; color: var(--ink); background: var(--paper); box-shadow: -18px 0 70px rgba(0,0,0,.17); transform: translateX(105%); transition: transform .28s ease; }
+    .drawer.show { transform: translateX(0); }
+    .drawer-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 19px; border-bottom: 1px solid var(--line); }
+    .drawer-head h2 { margin: 0; font-family: var(--serif); font-size: 1.7rem; font-weight: 500; }
+    .drawer-close { border: 0; background: transparent; font-size: 1.5rem; cursor: pointer; }
+    .drawer-body { padding-top: 26px; color: var(--muted); font-size: .85rem; }
+    .drawer-body strong { display: block; margin-bottom: 8px; color: var(--ink); font-family: var(--serif); font-size: 1.35rem; font-weight: 500; }
+    .drawer-contact { display: grid; gap: 10px; margin-top: 25px; }
+    .drawer-contact a { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 9px; text-decoration: none; }
+    .drawer-contact a:hover { background: var(--cream); }
+
+    @media (max-width: 980px) {
+      .nav { grid-template-columns: 1fr auto; }
+      .nav-links { position: fixed; z-index: 29; top: 117px; left: 0; right: 0; display: grid; gap: 0; padding: 12px 24px 18px; border-bottom: 1px solid var(--line); background: var(--paper); transform: translateY(-140%); transition: transform .24s ease; }
+      .nav-links.open { transform: translateY(0); }
+      .nav-links a { padding: 12px 0; border-bottom: 1px solid var(--line); }
+      .nav-links a:last-child { border: 0; }
+      .nav-actions { grid-column: 2; }
+      .menu-button { display: grid; }
+      .nav-actions .search-button { display: none; }
+      .hero-grid, .story-grid { grid-template-columns: 1fr; gap: 43px; }
+      .hero { padding-top: 48px; }
+      .hero-visual { min-height: 480px; max-width: 620px; width: 100%; margin-inline: auto; }
+      .collection-grid { grid-template-columns: repeat(2, 1fr); }
+      .feature-panel { grid-template-columns: 1fr; }
+      .feature-art { min-height: 370px; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .container { width: min(var(--max), calc(100% - 32px)); }
+      .announcement { font-size: .58rem; letter-spacing: .06em; }
+      .nav { min-height: 72px; }
+      .nav-links { top: 107px; }
+      .brand-name { font-size: 1rem; }
+      .brand-tag { font-size: .45rem; }
+      .hero { padding: 44px 0 60px; }
+      .hero h1 { font-size: clamp(3.1rem, 15vw, 4.8rem); }
+      .hero-intro { font-size: .94rem; }
+      .hero-visual { min-height: 400px; }
+      .hero-art { right: 36px; }
+      .hero-art-title { left: 24px; bottom: 25px; }
+      .hero-jar { left: 24%; width: 168px; height: 220px; }
+      .hero-nut.two { right: 10%; }
+      .trust-items { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(2) { border-right: 0; }
+      .trust-item:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .section { padding: 72px 0; }
+      .section-head { display: block; margin-bottom: 29px; }
+      .section-copy { margin-top: 18px; }
+      .collection-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .collection-card { min-height: 300px; padding: 18px; }
+      .collection-card h3 { font-size: 1.35rem; }
+      .collection-card p { font-size: .7rem; }
+      .collection-symbol { right: 22px; transform: scale(.75) rotate(20deg); transform-origin: top right; }
+      .founder-grid { grid-template-columns: 1fr; }
+      .story-frame { min-height: 390px; }
+      .story-copy-card { width: 66%; padding: 24px 20px; }
+      .story-copy-card h3 { font-size: 1.55rem; }
+      .feature-copy { padding: 38px 25px; }
+      .feature-art { min-height: 315px; }
+      .gift-box { transform: translate(-50%, -35%) rotate(-9deg) scale(.78); }
+      .contact-card { padding: 29px 23px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top, .footer-bottom { display: block; }
+      .footer-links { justify-content: flex-start; margin-top: 25px; }
+      .footer-bottom > * { display: block; margin-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Business contact details are configured below in the page script. -->
+  <div class="announcement">
+    <span>Fresh ingredients, thoughtfully packed</span>
+    <b>•</b>
+    Puthanathani, Kerala
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="THE BAKIST home">
+        <img class="brand-logo" src="logo.jpg" alt="The Bakist logo">
+        <span class="brand-copy">
+          <span class="brand-name">THE BAKIST</span>
+          <span class="brand-tag">YOUR BAKING PARTNER</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" id="siteNav" aria-label="Main navigation">
+        <a href="#collections">Collections</a>
+        <a href="#story">Our story</a>
+        <a href="#founders">Founders</a>
+        <a href="#hampers">Hampers</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-button search-button" type="button" aria-label="Search collections" onclick="document.getElementById('collectionSearch').focus()">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="10.8" cy="10.8" r="6.5" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </button>
+        <button class="icon-button cart-button" type="button" aria-label="Open enquiry bag" onclick="openDrawer()">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5.5 8.5h13l-1 11h-11l-1-11Z" stroke="currentColor" stroke-width="1.5"/><path d="M9 9V6.5a3 3 0 0 1 6 0V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="menu-button" type="button" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Curated for your kitchen</span>
+          <h1>Make every <em>moment</em> taste better.</h1>
+          <p class="hero-intro">From everyday baking essentials to premium dates, nuts and empty hamper packaging — find the good stuff, all in one place.</p>
+          <div class="hero-actions">
+            <a class="button" href="#collections">Explore collections <span aria-hidden="true">↗</span></a>
+            <a class="button secondary" href="#contact">Visit the store</a>
+          </div>
+          <div class="hero-note">
+            <span class="dot"></span>
+            <strong>Made for home bakers</strong>
+            <span>•</span>
+            <span>Trusted for gifting</span>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Premium dates and nuts illustration">
+          <div class="hero-art">
+            <span class="hero-label">Good things inside</span>
+            <div class="hero-jar"><div class="jar-label"><b>Dates<br>& nuts</b><small>THE BAKIST</small></div></div>
+            <span class="hero-nut one"></span>
+            <span class="hero-nut two"></span>
+            <span class="hero-nut three"></span>
+            <div class="hero-art-title">A little <em>extra</em><br>for every table.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container trust-items">
+        <div class="trust-item"><svg class="trust-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3c4 3.6 6.2 7 6.2 10.3a6.2 6.2 0 1 1-12.4 0C5.8 10 8 6.6 12 3Z" stroke="currentColor" stroke-width="1.5"/><path d="M9.3 14.3a3 3 0 0 0 2.7 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Quality checked</div>
+        <div class="trust-item"><svg class="trust-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 20s7-3.7 7-9.3V5.8L12 3 5 5.8v4.9C5 16.3 12 20 12 20Z" stroke="currentColor" stroke-width="1.5"/><path d="m8.8 11.8 2.1 2.1 4.4-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Frozen favourites</div>
+        <div class="trust-item"><svg class="trust-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 9h16M5.5 9v9h13V9M3 9l9-5 9 5M9 18v-4h6v4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>Made for celebrations</div>
+        <div class="trust-item"><svg class="trust-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 7.5v5l3.2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Local, thoughtful service</div>
+      </div>
+    </div>
+
+    <section class="section" id="collections">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">Shop by collection</span><h2 class="section-title">The good stuff,<br>sorted for you.</h2></div>
+          <p class="section-copy">A considered range of baking ingredients, frozen favourites, premium pantry staples and empty hamper packaging for every occasion.</p>
+        </div>
+        <div class="category-row" aria-label="Filter collections">
+          <button class="filter active" type="button" data-filter="all">All collections</button>
+          <button class="filter" type="button" data-filter="baking">Baking essentials</button>
+          <button class="filter" type="button" data-filter="frozen">Frozen favourites</button>
+          <button class="filter" type="button" data-filter="pantry">Dates & nuts</button>
+          <button class="filter" type="button" data-filter="gifting">Gifting</button>
+        </div>
+        <div class="collection-grid" id="collectionGrid">
+          <a class="collection-card" data-category="baking" href="#contact">
+            <span class="collection-number">01 / 04</span><span class="collection-symbol" aria-hidden="true"></span>
+            <h3>Baking essentials</h3><p>Flours, flavours, decorations and tools for your next bake.</p><span class="collection-link">Explore range <span>↗</span></span>
+          </a>
+          <a class="collection-card" data-category="frozen" href="#contact">
+            <span class="collection-number">02 / 04</span><span class="collection-symbol" aria-hidden="true"></span>
+            <h3>Frozen favourites</h3><p>Easy frozen bites for busy days and relaxed evenings.</p><span class="collection-link">Explore range <span>↗</span></span>
+          </a>
+          <a class="collection-card" data-category="pantry" href="#contact">
+            <span class="collection-number">03 / 04</span><span class="collection-symbol" aria-hidden="true"></span>
+            <h3>Dates & nuts</h3><p>Premium pantry staples selected for freshness and flavour.</p><span class="collection-link">Explore range <span>↗</span></span>
+          </a>
+          <a class="collection-card" data-category="gifting" href="#hampers">
+            <span class="collection-number">04 / 04</span><span class="collection-symbol" aria-hidden="true"></span>
+            <h3>Empty hampers</h3><p>Empty boxes, trays and finishing touches for weddings, Eid and every milestone.</p><span class="collection-link">Plan your hamper <span>↗</span></span>
+          </a>
+        </div>
+        
+      </div>
+    </section>
+
+    <section class="section soft" id="story">
+      <div class="container story-grid">
+        <div class="story-frame" aria-label="THE BAKIST family story">
+          <div class="story-copy-card"><h3>Good food begins with good choices.</h3><p>Thoughtfully selected. Carefully packed. Always served with care.</p></div>
+        </div>
+        <div class="story-content">
+          <span class="eyebrow">A little about us</span>
+          <h2 class="section-title">The pantry partner you can count on.</h2>
+          <p>THE BAKIST brings the everyday essentials and the special finds together under one roof — so home bakers, families and thoughtful gifters can spend less time searching and more time making.</p>
+          <ul class="story-points">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.5"/><path d="m8 12 2.6 2.6 5.5-5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Curated, not crowded.</b><br>We focus on the products you will actually reach for.</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.5"/><path d="m8 12 2.6 2.6 5.5-5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Quality is the standard.</b><br>From ingredients to presentation, every detail matters.</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.5"/><path d="m8 12 2.6 2.6 5.5-5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Local and personal.</b><br>Visit us in Puthanathani for friendly, practical help.</span></li>
+          </ul>
+          <a class="button secondary" href="#contact">Meet us in store <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section founders-section" id="founders">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">Meet the people behind it</span><h2 class="section-title">Built on trust,<br>served with care.</h2></div>
+          <p class="section-copy">THE BAKIST is shaped by a family with a strong business background and a simple aim: make quality ingredients and thoughtful packaging easier to find.</p>
+        </div>
+        <div class="founder-grid">
+          <article class="founder-card">
+            <div class="founder-top"><span class="founder-initials" aria-hidden="true">S</span><div><h3>Safwan</h3><span class="founder-role">Co-Founder</span></div></div>
+            <p>Safwan leads sourcing and quality at THE BAKIST with a hands-on approach and a family legacy built on reliability.</p>
+          </article>
+          <article class="founder-card">
+            <div class="founder-top"><span class="founder-initials" aria-hidden="true">H</span><div><h3>Haneefa</h3><span class="founder-role">Co-Founder</span></div></div>
+            <p>Haneefa brings the same care and trust to the way THE BAKIST serves home bakers, families and local businesses.</p>
+          </article>
+        </div>
+        <p class="founder-legacy">Together, Safwan and Haneefa are carrying that family reputation forward into a store made for bakers, home cooks and thoughtful gifters.</p>
+      </div>
+    </section>
+
+    <section class="section" id="hampers">
+      <div class="container">
+        <div class="feature-panel">
+          <div class="feature-copy">
+            <span class="eyebrow">Made to be remembered</span>
+            <h2 class="section-title">Empty hampers, ready for your idea.</h2>
+            <p>We provide empty hamper boxes and packaging only. Choose the size, style and finishing touches, then fill it with whatever you want.</p>
+            <ul class="feature-list"><li>Empty hamper boxes and trays</li><li>Ribbons, wraps and finishing touches</li><li>Custom options for events and gifting</li></ul>
+            <a class="button light" href="#contact">Ask about empty hampers <span>↗</span></a>
+          </div>
+          <div class="feature-art" aria-hidden="true">
+            <div class="gift-box"><div class="gift-lid"></div><div class="gift-ribbon"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="contact">
+      <div class="container">
+        <div class="section-head"><div><span class="eyebrow">Come say hello</span><h2 class="section-title">Let’s make<br>something lovely.</h2></div><p class="section-copy">Have a question about stock, empty hamper packaging or a larger order? Send a message or reach us directly.</p></div>
+        <div class="contact-grid">
+          <div class="contact-card dark">
+            <span class="eyebrow">Visit or call</span>
+            <h3>We’re here to help.</h3>
+            <p>Drop by the store, call ahead or message us on WhatsApp for product availability and empty hamper enquiries.</p>
+            <div class="contact-details">
+              <div class="contact-detail"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 10.2c0 5.2-8 10.3-8 10.3S4 15.4 4 10.2a8 8 0 1 1 16 0Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" stroke-width="1.5"/></svg><div><span class="contact-label">Address</span>THE BAKIST, Punnathala, Puthanathani, Kerala 676552</div></div>
+              <div class="contact-detail"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5.4 4.5 8.8 4l2 4.4-2.1 1.6a14 14 0 0 0 5.3 5.3l1.6-2.1 4.4 2-.5 3.4c-.2 1.1-1.2 1.8-2.3 1.6C9.3 18.8 5.2 14.7 3.8 6.8c-.2-1.1.5-2.1 1.6-2.3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><div><span class="contact-label">Phone / WhatsApp</span><a id="phoneLink" href="tel:+917293113103"><span id="phoneText">+91 7293113103</span></a></div></div>
+              <div class="contact-detail"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 7.5v4.8l3.2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><div><span class="contact-label">Opening hours</span>Monday – Saturday · 9:00 AM – 8:00 PM</div></div>
+              <div class="contact-detail"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4.2" y="4.2" width="15.6" height="15.6" rx="4" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3.6" stroke="currentColor" stroke-width="1.5"/><circle cx="17.3" cy="6.8" r="1" fill="currentColor"/></svg><div><span class="contact-label">Instagram</span><a href="https://www.instagram.com/the_bakist_ptni/?hl=en" target="_blank" rel="noopener">@the_bakist_ptni ↗</a></div></div>
+            </div>
+            <div class="hero-actions"><a class="button light" id="whatsappLink" href="https://wa.me/917293113103" target="_blank" rel="noopener">WhatsApp us</a><a class="button secondary" style="color:var(--cream);border-color:rgba(255,255,255,.5);" href="https://www.google.com/maps/dir/?api=1&destination=THE+BAKIST+Punnathala+Puthanathani+Kerala+676552" target="_blank" rel="noopener">Get directions</a></div>
+          </div>
+          <div class="contact-card">
+            <span class="eyebrow">Send an enquiry</span>
+            <h3>Tell us what you need.</h3>
+            <p>We’ll get back to you as soon as possible. For urgent availability checks, calling or WhatsApp is fastest.</p>
+            <form class="contact-form" id="enquiryForm">
+              <div class="form-row"><label>Your name<input name="name" autocomplete="name" required placeholder="Name"></label><label>Phone number<input name="phone" type="tel" autocomplete="tel" required placeholder="Phone"></label></div>
+              <label>Email address <span style="font-size:.6rem;font-weight:400;letter-spacing:0;text-transform:none;">(optional)</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
+              <label>How can we help?<textarea name="message" required placeholder="Tell us about your order or empty hamper idea..."></textarea></label>
+              <div class="form-status" id="formStatus" role="status">WhatsApp is opening with your enquiry. Tap Send there to contact THE BAKIST.</div>
+              <button class="button" type="submit">Continue in WhatsApp <span>↗</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="#top"><img class="brand-logo" src="logo.jpg" alt="The Bakist logo"><span class="brand-copy"><span class="brand-name">THE BAKIST</span><span class="brand-tag">YOUR BAKING PARTNER</span></span></a>
+          <p class="footer-copy">Ingredients for good days, gifts for good people and a little more joy in every bite.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation"><a href="#collections">Collections</a><a href="#story">Our story</a><a href="#founders">Founders</a><a href="#hampers">Empty hampers</a><a href="#contact">Contact</a><a href="https://www.instagram.com/the_bakist_ptni/?hl=en" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.facebook.com/thebakist.in/" target="_blank" rel="noopener">Facebook ↗</a></nav>
+      </div>
+      <div class="footer-bottom"><span>© 2026 THE BAKIST. All rights reserved.</span><span>Puthanathani, Kerala</span></div>
+    </div>
+  </footer>
+
+  <div class="backdrop" id="backdrop" onclick="closeDrawer()"></div>
+  <aside class="drawer" id="drawer" aria-label="Enquiry bag" aria-hidden="true">
+    <div class="drawer-head"><h2>Your enquiry bag</h2><button class="drawer-close" type="button" aria-label="Close enquiry bag" onclick="closeDrawer()">×</button></div>
+    <div class="drawer-body"><strong>Build your list before you visit.</strong>Select a collection or send us a message and we’ll help you find the right products. Empty hampers are supplied without contents, so you can style them your own way.</div>
+    <div class="drawer-contact"><a href="#contact" onclick="closeDrawer()">✦ Ask about a collection <span style="margin-left:auto;">↗</span></a><a id="drawerPhone" href="tel:+917293113103">☎ Call the store <span style="margin-left:auto;">↗</span></a><a href="#hampers" onclick="closeDrawer()">▱ Plan an empty hamper <span style="margin-left:auto;">↗</span></a></div>
+  </aside>
+
+  <script>
+    /*
+      Use digits only in the WhatsApp value, including country code.
+    */
+    const CONTACT_NUMBER = "+91 7293113103";
+    const CONTACT_DIGITS = "917293113103";
+
+    const siteNav = document.getElementById("siteNav");
+    const backdrop = document.getElementById("backdrop");
+    const drawer = document.getElementById("drawer");
+    const cartCount = document.getElementById("cartCount");
+
+    function toggleMenu() {
+      const open = siteNav.classList.toggle("open");
+      document.querySelector(".menu-button").setAttribute("aria-expanded", String(open));
+      document.body.classList.toggle("menu-open", open);
+    }
+    siteNav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+      siteNav.classList.remove("open");
+      document.body.classList.remove("menu-open");
+      document.querySelector(".menu-button").setAttribute("aria-expanded", "false");
+    }));
+
+    function openDrawer() {
+      drawer.classList.add("show");
+      backdrop.classList.add("show");
+      drawer.setAttribute("aria-hidden", "false");
+      document.body.classList.add("cart-open");
+    }
+    function closeDrawer() {
+      drawer.classList.remove("show");
+      backdrop.classList.remove("show");
+      drawer.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("cart-open");
+    }
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") { closeDrawer(); siteNav.classList.remove("open"); } });
+
+    function setContactNumber() {
+      document.getElementById("phoneText").textContent = CONTACT_NUMBER;
+      document.getElementById("phoneLink").href = "tel:+" + CONTACT_DIGITS;
+      document.getElementById("whatsappLink").href = "https://wa.me/" + CONTACT_DIGITS;
+      document.getElementById("drawerPhone").href = "tel:+" + CONTACT_DIGITS;
+    }
+    setContactNumber();
+
+    const filters = document.querySelectorAll(".filter");
+    const cards = document.querySelectorAll(".collection-card");
+    const search = document.getElementById("collectionSearch");
+    let selectedFilter = "all";
+    function renderCollections() {
+      const query = search.value.trim().toLowerCase();
+      cards.forEach((card) => {
+        const matchesFilter = selectedFilter === "all" || card.dataset.category === selectedFilter;
+        const matchesSearch = !query || card.textContent.toLowerCase().includes(query);
+        card.hidden = !(matchesFilter && matchesSearch);
+      });
+    }
+    filters.forEach((filter) => filter.addEventListener("click", () => {
+      selectedFilter = filter.dataset.filter;
+      filters.forEach((item) => item.classList.toggle("active", item === filter));
+      renderCollections();
+    }));
+    search.addEventListener("input", renderCollections);
+
+    document.querySelectorAll(".collection-card").forEach((card) => card.addEventListener("click", () => {
+      cartCount.textContent = "1";
+    }));
+
+    document.getElementById("enquiryForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = new FormData(event.target);
+      const name = String(form.get("name") || "").trim();
+      const phone = String(form.get("phone") || "").trim();
+      const email = String(form.get("email") || "").trim();
+      const message = String(form.get("message") || "").trim();
+      const enquiry = [
+        "Hello THE BAKIST, I have an enquiry.",
+        `Name: ${name}`,
+        `My phone: ${phone}`,
+        email ? `My email: ${email}` : "",
+        `Enquiry: ${message}`
+      ].filter(Boolean).join("\n");
+      const whatsappUrl = "https://wa.me/" + CONTACT_DIGITS + "?text=" + encodeURIComponent(enquiry);
+      window.open(whatsappUrl, "_blank", "noopener");
+      document.getElementById("formStatus").classList.add("show");
+      event.target.reset();
+    });
+  </script>
+</body>
+</html>
